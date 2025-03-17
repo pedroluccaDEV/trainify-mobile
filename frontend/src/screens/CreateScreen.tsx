@@ -2,19 +2,25 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
+import BackgroundSvg from '../assets/background.svg'; // Importando o SVG
 
 const CreateScreen = () => {
+  const username = 'Pedro';
+
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.headerContent}>
-          <View>
-            <Text style={styles.greeting}>Hi, Pedro</Text>
-            <Text style={styles.motto}>Success starts with Discipline!</Text>
+      <BackgroundSvg style={styles.background} />
+      <View style={styles.textContainer}>
+        <View style={styles.header}>
+          <View style={styles.headerContent}>
+            <View>
+              <Text style={styles.greeting}>Hi, {username}</Text>
+              <Text style={styles.motto}>Success starts with Discipline!</Text>
+            </View>
+            <TouchableOpacity style={styles.profileButton}>
+              <View style={styles.profileImage} />
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.profileButton}>
-            <Ionicons name="person-circle" size={40} color="#fff" />
-          </TouchableOpacity>
         </View>
 
         <View style={styles.aiCard}>
@@ -25,18 +31,18 @@ const CreateScreen = () => {
             can modify it your way. Achieve your best with precision and flexibility!
           </Text>
         </View>
-      </View>
 
-      <View style={styles.content}>
-        <TouchableOpacity style={[styles.button, styles.createButton]}>
-          <Ionicons name="add-circle" size={24} color="#fff" />
-          <Text style={styles.buttonText}>Create Workout</Text>
-        </TouchableOpacity>
+        <View style={styles.content}>
+          <TouchableOpacity style={[styles.button, styles.createButton]}>
+            <Ionicons name="add-circle" size={24} color="#fff" />
+            <Text style={styles.buttonText}>Create Workout</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.button, styles.modifyButton]}>
-          <Ionicons name="pencil" size={24} color="#fff" />
-          <Text style={styles.buttonText}>Modify Workout</Text>
-        </TouchableOpacity>
+          <TouchableOpacity style={[styles.button, styles.modifyButton]}>
+            <Ionicons name="pencil" size={24} color="#fff" />
+            <Text style={styles.buttonText}>Modify Workout</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -45,58 +51,82 @@ const CreateScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
+  },
+  background: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: '100%',
+    height: '100%',
+  },
+  textContainer: {
+    flex: 1,
   },
   header: {
-    backgroundColor: '#FF8C00',
-    paddingHorizontal: 20,
-    paddingBottom: 30,
+    paddingVertical: 25,
+    paddingHorizontal: 30,
+    height: 100,
   },
   headerContent: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 20,
+    height: '100%',
   },
   greeting: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    fontSize: 20,
+    fontFamily: 'Inter-Bold',
     color: '#fff',
   },
   motto: {
-    fontSize: 14,
+    fontSize: 12,
+    fontFamily: 'Inter-Regular',
     color: '#fff',
     opacity: 0.8,
   },
   profileButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    overflow: 'hidden',
+  },
+  profileImage: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#fff',
+    borderRadius: 24,
   },
   aiCard: {
-    backgroundColor: '#fff',
-    borderRadius: 15,
-    padding: 20,
-    marginTop: 10,
+    backgroundColor: '#F9F9F9',
+    borderRadius: 20,
+    padding: 25,
+    marginHorizontal: 30,
+    marginTop: 50,
+    marginBottom: 50,
   },
   aiTitle: {
     fontSize: 18,
+    fontFamily: 'Inter-Bold',
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: 30,
     color: '#000',
   },
   aiDescription: {
     fontSize: 14,
-    color: '#666',
+    color: '#000',
     lineHeight: 20,
   },
   content: {
     flex: 1,
-    padding: 20,
+    padding: 30,
     gap: 20,
-  },
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    backgroundColor: 'linear-gradient(0deg, rgba(240,240,240,1) 0%, rgba(221,221,221,1) 100%)', },
+
   button: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -106,10 +136,10 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   createButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#64946E',
   },
   modifyButton: {
-    backgroundColor: '#FF6B6B',
+    backgroundColor: '#FE676E',
   },
   buttonText: {
     color: '#fff',

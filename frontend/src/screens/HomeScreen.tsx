@@ -1,9 +1,10 @@
+// filepath: e:\trainify-mobile\frontend\src\screens\HomeScreen.tsx
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { SvgXml } from 'react-native-svg'; 
+import BackgroundSvg from '../assets/background.svg' // Importando o SVG
 
 type RootStackParamList = {
   WorkoutDetail: { id: string; title: string };
@@ -20,89 +21,105 @@ const HomeScreen = ({ navigation }: Props) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Header com estrutura reutilizável */}
-      <View style={styles.header}>
-        <View style={styles.headerContent}>
-          <View>
-            <Text style={styles.greeting}>Hi, {username}</Text>
-            <Text style={styles.motto}>Success starts with Discipline!</Text>
-          </View>
-          <TouchableOpacity style={styles.profileButton}>
-            {/* Avatar */}
-            <View style={styles.profileImage} />
-          </TouchableOpacity>
-        </View>
-      </View>
-
-      {/* Conteúdo Principal */}
-      <ScrollView style={styles.content}>
-        <View style={styles.statsContainer}>
-          <TouchableOpacity style={styles.finishedWorkouts}>
-            <Text style={styles.statNumber}>5</Text>
-            <Text style={styles.statLabel}>Finished Workouts</Text>
-            <Text style={styles.viewAll}>view all progress</Text>
-          </TouchableOpacity>
-
-          <View style={styles.smallStatsContainer}>
-            <TouchableOpacity style={styles.smallStat}>
-              <Ionicons name="stats-chart" size={24} color="#FF8C00" />
-              <Text style={styles.smallStatLabel}>View Charts</Text>
-              <Text style={styles.smallStatSubLabel}>View your progress charts</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.smallStat}>
-              <Ionicons name="time" size={24} color="#FF8C00" />
-              <Text style={styles.smallStatLabel}>Training time</Text>
-              <Text style={styles.smallStatValue}>120 Minutes</Text>
+        <BackgroundSvg style={styles.background} /> 
+      <View style={styles.contentContainer}>
+        {/* Header com estrutura reutilizável */}
+        <View style={styles.header}>
+          <View style={styles.headerContent}>
+            <View>
+              <Text style={styles.greeting}>Hi, {username}</Text>
+              <Text style={styles.motto}>Success starts with Discipline!</Text>
+            </View>
+            <TouchableOpacity style={styles.profileButton}>
+              {/* Avatar */}
+              <View style={styles.profileImage} />
             </TouchableOpacity>
           </View>
         </View>
 
-        {/* Workout cards */}
-        <Text style={styles.sectionTitle}>Your Active Workout</Text>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.workoutScroll}>
-          <TouchableOpacity 
-            style={[styles.workoutCard, { backgroundColor: '#FF6B6B' }] }
-            onPress={() => navigateToWorkout('1', 'Workout A')}
-          >
-            <Text style={styles.workoutTitle}>Workout A</Text>
-            <Text style={styles.workoutSubtitle}>Upper body</Text>
-            <Text style={styles.workoutDetails}>9 exercises</Text>
-          </TouchableOpacity>
+        {/* Conteúdo Principal */}
 
-          <TouchableOpacity 
-            style={[styles.workoutCard, { backgroundColor: '#845EC2' }] }
-            onPress={() => navigateToWorkout('2', 'Workout B')}
-          >
-            <Text style={styles.workoutTitle}>Workout B</Text>
-            <Text style={styles.workoutSubtitle}>Lower body</Text>
-            <Text style={styles.workoutDetails}>5 exercises</Text>
+        <ScrollView style={styles.content}>
+          <View style={styles.statsContainer}>
+            <TouchableOpacity style={styles.finishedWorkouts}>
+              <Text style={styles.statNumber}>5</Text>
+              <Text style={styles.statLabel}>Finished Workouts</Text>
+              <Text style={styles.viewAll}>view all progress</Text>
+            </TouchableOpacity>
+
+            <View style={styles.smallStatsContainer}>
+              <TouchableOpacity style={styles.smallStat}>
+                <Ionicons name="stats-chart" size={24} color="#FF8C00" />
+                <Text style={styles.smallStatLabel}>View Charts</Text>
+                <Text style={styles.smallStatSubLabel}>View your progress charts</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.smallStat}>
+                <Ionicons name="time" size={24} color="#FF8C00" />
+                <Text style={styles.smallStatLabel}>Training time</Text>
+                <Text style={styles.smallStatValue}>120 Minutes</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          {/* Workout cards */}
+          <Text style={styles.sectionTitle}>Your Active Workout</Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.workoutScroll}>
+            <TouchableOpacity 
+              style={[styles.workoutCard, { backgroundColor: '#FE676E' }] }
+              onPress={() => navigateToWorkout('1', 'Workout A')}
+            >
+              <Text style={styles.workoutTitle}>Workout A</Text>
+              <Text style={styles.workoutSubtitle}>Upper body</Text>
+              <Text style={styles.workoutDetails}>9 exercises</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity 
+              style={[styles.workoutCard, { backgroundColor: '#845EC2' }] }
+              onPress={() => navigateToWorkout('2', 'Workout B')}
+            >
+              <Text style={styles.workoutTitle}>Workout B</Text>
+              <Text style={styles.workoutSubtitle}>Lower body</Text>
+              <Text style={styles.workoutDetails}>5 exercises</Text>
+            </TouchableOpacity>
+          </ScrollView>
+
+          {/* Ranking Button */}
+          <TouchableOpacity style={styles.rankingButton}>
+            <View style={styles.rankingIcon}>
+              <Ionicons name="trophy" size={24} color="#FF8C00" />
+            </View>
+            <View>
+              <Text style={styles.rankingTitle}>Join the Ranking System</Text>
+              <Text style={styles.rankingSubtitle}>Compete, level up, and track your progress!</Text>
+            </View>
           </TouchableOpacity>
         </ScrollView>
-
-        {/* Ranking Button */}
-        <TouchableOpacity style={styles.rankingButton}>
-          <View style={styles.rankingIcon}>
-            <Ionicons name="trophy" size={24} color="#FF8C00" />
-          </View>
-          <View>
-            <Text style={styles.rankingTitle}>Join the Ranking System</Text>
-            <Text style={styles.rankingSubtitle}>Compete, level up, and track your progress!</Text>
-          </View>
-        </TouchableOpacity>
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };
 
 // Estilos
 const styles = StyleSheet.create({
-  container: {
+  container: { // Container principal
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#000000',
+  },
+
+  background: { // Estilo do SVG
+    position: 'absolute', // Posição estática
+    top: 0, // Ocupa toda a tela
+    left: 0, // Ocupa toda a tela
+    right: 0, // Ocupa toda a tela
+    bottom: 0, // Ocupa toda a tela
+    width: '100%', // Largura total
+    height: '100%', // Altura total
+  },
+  contentContainer: { // Container do conteúdo
+    flex: 1,
   },
   header: {
-    backgroundColor: '#FF8C00',
     paddingVertical: 25,   // Padding em cima e embaixo
     paddingHorizontal: 30, // Padding nas laterais
     height: 100,           // Altura do header
@@ -129,27 +146,37 @@ const styles = StyleSheet.create({
     height: 48,
     borderRadius: 24,
     overflow: 'hidden',
+
   },
   profileImage: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#ccc', // Cor cinza para o avatar
+    backgroundColor: '#', // Cor cinza para o avatar
     borderRadius: 24,
   },
   content: {
     flex: 1,
     paddingHorizontal: 20,
+    backgroundColor: 'linear-gradient(0deg, rgba(240,240,240,1) 0%, rgba(221,221,221,1) 100%)',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    paddingTop: 20,
+    paddingLeft: 30,
+    paddingRight: 30,
   },
   statsContainer: {
     flexDirection: 'row',
     gap: 15,
     marginBottom: 20,
+    
   },
   finishedWorkouts: {
+    width: 1,
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#F9F9F9',
     padding: 15,
-    borderRadius: 15,
+
+    borderRadius: 20,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -175,9 +202,9 @@ const styles = StyleSheet.create({
     gap: 15,
   },
   smallStat: {
-    backgroundColor: '#fff',
+    backgroundColor: '#F9F9F9',
     padding: 15,
-    borderRadius: 15,
+    borderRadius: 20,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
