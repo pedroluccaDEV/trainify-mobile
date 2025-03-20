@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
+import BackgroundSvg from '../assets/background.svg'; // Importa o arquivo SVG
+import { globalStyles } from '../styles/global';
 
 interface WorkoutPlan {
   id: string;
@@ -48,22 +50,24 @@ const WORKOUT_PLANS: WorkoutPlan[] = [
 ];
 
 const LibraryScreen = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState(''); 
 
   const filteredPlans = WORKOUT_PLANS.filter(plan =>
     plan.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.headerContent}>
+    <SafeAreaView style={globalStyles.bodyDefault}>
+    <BackgroundSvg style={globalStyles.background} />
+    <View style={globalStyles.contentWrapper}/>
+      <View style={globalStyles.headerDefault}>
+        <View style={globalStyles.headerContent}>
           <View>
-            <Text style={styles.greeting}>Hi, Pedro</Text>
-            <Text style={styles.motto}>Success starts with Discipline!</Text>
+            <Text style={globalStyles.headerGreeting}>Hi, Eduardo</Text>
+            <Text style={globalStyles.headerMotto}>Success starts with Discipline!</Text>
           </View>
-          <TouchableOpacity style={styles.profileButton}>
-            <Ionicons name="person-circle" size={40} color="#fff" />
+          <TouchableOpacity style={globalStyles.profileButton}>
+            <View style={globalStyles.profileImage} />
           </TouchableOpacity>
         </View>
       </View>
@@ -95,12 +99,7 @@ const LibraryScreen = () => {
               </View>
               <View style={styles.progressContainer}>
                 <View style={styles.progressBar}>
-                  <View 
-                    style={[
-                      styles.progressFill,
-                      { width: '75%', backgroundColor: plan.color }
-                    ]} 
-                  />
+                  <View style={[styles.progressFill,{ width: '75%', backgroundColor: plan.color }]} />
                 </View>
                 <Text style={styles.progressText}>{plan.progress}</Text>
               </View>
@@ -113,36 +112,25 @@ const LibraryScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  libraryContainer: {
     backgroundColor: '#fff',
-  },
-  header: {
-    backgroundColor: '#FF8C00',
-    paddingHorizontal: 20,
-    paddingBottom: 20,
-  },
-  headerContent: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  greeting: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#fff',
-  },
-  motto: {
-    fontSize: 14,
-    color: '#fff',
-    opacity: 0.8,
-  },
-  profileButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    padding: 20,
+    marginTop: -30, // Posiciona a área branca sobre a laranja
+    flex: 1,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: -2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 5,
+  },  
+  contentWrapper: {
+    flex: 1,
+    backgroundColor: "#F5F5F5",
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    paddingTop: 20,
   },
   searchContainer: {
     padding: 20,
